@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Catatan Untuk Widdah</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(
+180deg,
+#d9f3ff 0%,
+#8fd3ff 35%,
+#4fa8e8 70%,
+#1d6fb8 100%
+);
+overflow:hidden;
+height:100vh;
+position:relative;
+}
+
+/* HALAMAN */
+
+.page{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100dvh;
+padding:25px;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+z-index:10;
+
+opacity:0;
+transform:translateY(30px);
+transition:.5s;
+}
+
+.page.active{
+display:flex;
+opacity:1;
+transform:translateY(0);
+}
+
+/* JUDUL */
+
+.title{
+font-family:'Dancing Script',cursive;
+font-size:3rem;
+color:white;
+margin-bottom:15px;
+
+text-shadow:
+0 0 10px rgba(255,255,255,.4),
+0 0 20px rgba(255,255,255,.2);
+}
+
+/* TEKS */
+
+.text{
+max-width:350px;
+line-height:1.8;
+font-size:1rem;
+color:white;
+}
+
+/* GAMBAR */
+
+.img-box img{
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:20px;
+padding:8px;
+background:white;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+margin-bottom:20px;
+}
+
+/* BUTTON */
+
+.btn-group{
+display:flex;
+gap:15px;
+margin-top:25px;
+}
+
+button{
+border:none;
+padding:14px 35px;
+border-radius:15px;
+background:#0e7cc7;
+color:white;
+font-size:17px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 8px 20px rgba(14,124,199,.35);
+}
+
+button:hover{
+background:#0964a3;
+}
+
+button:active{
+transform:scale(.95);
+}
+
+/* SURAT */
+
+.letter{
+width:95%;
+max-width:380px;
+
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,.2);
+
+padding:25px;
+border-radius:20px;
+
+text-align:left;
+line-height:1.9;
+color:white;
+
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+/* EMOJI LAUT */
+
+.ocean{
+position:fixed;
+bottom:-100px;
+opacity:.35;
+pointer-events:none;
+animation:floatOcean linear infinite;
+z-index:1;
+}
+
+@keyframes floatOcean{
+
+from{
+transform:translateY(0);
+}
+
+to{
+transform:translateY(-120vh);
+}
+
+}
+
+/* GELOMBANG */
+
+.wave{
+position:fixed;
+bottom:0;
+left:0;
+width:200%;
+height:120px;
+background:rgba(255,255,255,.15);
+border-radius:45%;
+animation:waveMove 12s linear infinite;
+z-index:2;
+}
+
+.wave2{
+height:90px;
+opacity:.5;
+animation-duration:18s;
+}
+
+@keyframes waveMove{
+
+from{
+transform:translateX(0);
+}
+
+to{
+transform:translateX(-50%);
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+.title{
+font-size:2.6rem;
+}
+
+.text{
+font-size:.95rem;
+}
+
+.img-box img{
+width:150px;
+height:150px;
+}
+
+button{
+font-size:16px;
+padding:12px 30px;
+}
+
+}
+
+/* PAGE 4 SCROLL */
+
+#page4{
+    display:none;
+    justify-content:flex-start;
+    align-items:center;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:35px 20px;
+    -webkit-overflow-scrolling:touch;
+}
+
+#page4.active{
+    display:flex;
+}
+
+#page4 .letter{
+    flex-shrink:0;
+    width:100%;
+    max-width:450px;
+    margin:auto 0;
+    padding:25px;
+    line-height:1.9;
+}
+
+/* SCROLLBAR */
+
+#page4::-webkit-scrollbar{
+    width:4px;
+}
+
+#page4::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.6);
+    border-radius:10px;
+}
+
+#page4::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+</style>
+</head>
+<body>
+
+<!-- MUSIK -->
+
+<audio id="bgm" autoplay loop muted>
+<source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+
+<div class="img-box">
+<img src="icon1.gif">
+</div>
+
+<button onclick="showPage('page2')">
+tap >
+</button>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="page2">
+
+<div class="img-box">
+<img src="icon1.jpg">
+</div>
+
+<h1 class="title">
+I'm sorry, love
+</h1>
+
+<p class="text">
+Sometimes we hurt the people we love the most.
+This page is a small way to say, I'm sorry.
+</p>
+
+<div class="btn-group">
+
+<button onclick="showPage('page3')">
+Yes
+</button>
+
+<button id="noBtn">
+No
+</button>
+
+</div>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page" id="page3">
+
+<div class="img-box">
+<img src="icon2.jpg">
+</div>
+
+<p class="text">
+I know I made mistakes.
+I'm not perfect.
+But my feelings for you are real.
+</p>
+
+<button onclick="showPage('page4')">
+forgive me!!
+</button>
+
+</div>
+
+<!-- PAGE 4-->
+
+<div class="page" id="page4">
+
+<div class="letter">
+
+Dear My Love 
+<br><br>
+Bismillah
+
+<br><br>
+2 hari berlalu, saya merasa kehilangan bagian seluruh duniaku. Berapa banyak tetes air mata yang berguguran dalam doa, begitu pun ketika menerima kenyataan bahwa sayalah penyebab ini semua terjadi, semakin dunia yang luas ini menjadi begitu sempit, sesak. setiap detik,menit,jam yang lewat terasa kosong, penuh kehampaan. 
+
+<br><br>
+Saya sangat paham rasa sakit dan kecewa besar yang kamu alami. Perlu waktu yang lama bahkan mungkin tidak ada kata untuk sembuh. Namun, perlu saya tekankan kembali, yang terjadi kemarin lalu, tak sebesar dari apa yang kita pikirkan. 
+
+<br><br>
+Itu perkara yang telah selesai dan sialnya belum sempat saya rapihkan. Walau memang ada kesalahan, Namun percayalah itu tak serumit apa yang kita bayangkan. Dari lubuk hatiku yang paling dalam...
+
+<br><br>
+Sangat minta maaf,sayang. Kemarin kamu juga bertanya, apa saya tidak cinta kamu? itu pertanyaan retoris. Perkara jelaz sekali sayang, Cintaku berakhir di kamu. Jika masih ragu, bersabarlah sedikit lagi. 
+
+<br><br>
+Puncak dari mencintai adalah menikahi. Dan kita sudah ada gambaran waktunya. Sayang, tidak bisaka lewati hari2 selanjutnya tanpa kamu. Begitu juga atas rencana dan mimpi yang pernah kita bicarakan, takkan kubiarkan itu hanya menjadi dongeng belaka. 
+
+<br><br>
+Tak bisa kubayangkan bagaimana buruknya hariku besok tanpa sosok sepertimu. Sangat menyesalka sudah buat retakan ini yang membuatku kehilangan jiwa. Jiwa yang selalu membuatku semangat, nyaman dan aman setiap bersamanya. 
+
+<br><br>
+Dan Aku masih jauh dari kata sempurna, sayang. Menulis ini saja butuh waktu untuk menuangkan isi kepala. Usaha2 yang kuberikan kepadamu juga kadang kurang maksimal. Untuk sekarang, tinggal doaku kepada penciptamu yang menjadi usaha terakhirku. Jika berkenan, maka izinkan aku tetap bersamamu, dan berikan aku ruang untuk memperbaiki retak yang sudah kubuat. Jika kecewamu tidak bisa pudar, maka aku akan berdoa semoga engkau selalu diberi kebahagiaan dan dipertemukan dengan seseorang yang pantas untukmu. 
+
+<br><br>
+Di dunia yang hanya sekali ini, Mohon bangetka🥹....tanpa mengurasi empatiku kepada rasa kecewata, berilah kesempatan untuk saya belajar memperbaiki. Maka kupastikan ini menjadi sakit yang terakhir yang kita rasakan. 
+<br><br>
+I LOVE YOU❤️
+<br><br>
+wassalam.
+
+<center>
+
+<button onclick="showPage('page5')">
+Continue
+</button>
+
+</center>
+
+</div>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page" id="page5">
+
+ <div class="img-box">
+<img src="icon4.gif">
+</div>
+
+<p class="text">
+
+Thank you for reading my apology.
+
+Thank you for every smile.
+
+</p>
+
+<br>
+
+<button onclick="showPage('page1')">
+replay
+</button>
+
+</div>
+
+
+
+<!-- GELOMBANG -->
+
+<div class="wave"></div>
+<div class="wave wave2"></div>
+
+<script>
+
+/* GANTI HALAMAN */
+
+function showPage(id){
+
+document.querySelectorAll('.page').forEach(page=>{
+page.classList.remove('active');
+});
+
+document.getElementById(id).classList.add('active');
+
+}
+
+/* TOMBOL NO KABUR */
+
+const noBtn =
+document.getElementById("noBtn");
+
+function moveButton(){
+
+const x =
+(Math.random()*220)-110;
+
+const y =
+(Math.random()*140)-70;
+
+noBtn.style.transform =
+`translate(${x}px,${y}px)`;
+
+}
+
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("touchstart",moveButton);
+
+/* AUTOPLAY MOBILE */
+
+document.body.addEventListener('click',()=>{
+
+const music =
+document.getElementById('bgm');
+
+music.muted=false;
+music.play();
+
+},{once:true});
+
+/* EMOJI LAUT */
+
+const icons = [
+
+"🌊",
+"🐳",
+"🐬",
+"🐠",
+"🐟",
+"🐙",
+"🪼",
+"🐚",
+"⭐",
+"🫧"
+
+];
+
+for(let i=0;i<40;i++){
+
+const span =
+document.createElement("span");
+
+span.className="ocean";
+
+span.innerHTML =
+icons[Math.floor(Math.random()*icons.length)];
+
+span.style.left =
+Math.random()*100+"vw";
+
+span.style.fontSize =
+(20+Math.random()*20)+"px";
+
+span.style.animationDuration =
+(8+Math.random()*10)+"s";
+
+span.style.animationDelay =
+Math.random()*5+"s";
+
+document.body.appendChild(span);
+
+}
+
+</script>
+
+</body>
+</html>
